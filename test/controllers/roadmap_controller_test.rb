@@ -2,6 +2,7 @@ require "test_helper"
 
 class RoadmapControllerTest < ActionDispatch::IntegrationTest
   setup do
+    Rails.cache.clear
     RoadmapParser.any_instance.stubs(:parse).returns([
       { title: "Short term", description: "Stabilize and polish the core", items: [ { title: "Reliability, performance, and technical debt", status: "In progress", description: nil } ] },
       { title: "Medium term", description: "Expand personal-finance capability", items: [ { title: "First-class AI", status: "Exploring", description: nil } ] },
@@ -19,6 +20,21 @@ class RoadmapControllerTest < ActionDispatch::IntegrationTest
     assert_select "details:not([open])", count: 3
     assert_select "summary", text: /Stabilize and polish the core/
     assert_select "h2", text: "Reliability, performance, and technical debt"
+  end
+
+  test "caches parsed roadmap phases between requests" do
+    original_cache = Rails.cache
+    Rails.cache = ActiveSupport::Cache::MemoryStore.new
+    parser = mock
+    RoadmapParser.expects(:new).once.returns(parser)
+    parser.expects(:parse).once.returns([])
+
+    get roadmap_url
+    get roadmap_url
+
+    assert_response :success
+  ensure
+    Rails.cache = original_cache
   end
 
   test "roadmap page renders an empty state without phases or items" do

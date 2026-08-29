@@ -13,7 +13,8 @@ class RoadmapParser
   class ParseError < StandardError; end
 
   def initialize(source = nil, open_timeout: DEFAULT_OPEN_TIMEOUT, read_timeout: DEFAULT_READ_TIMEOUT)
-    @source = source || ENV.fetch("SURE_ROADMAP_URL", DEFAULT_SOURCE_URL)
+    @source = source.presence || ENV["SURE_ROADMAP_URL"].presence || DEFAULT_SOURCE_URL
+
     @open_timeout = open_timeout
     @read_timeout = read_timeout
   end
