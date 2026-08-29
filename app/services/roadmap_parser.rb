@@ -31,8 +31,10 @@ class RoadmapParser
   private
 
   def parse_markdown(content, allow_empty: false)
-    lines = content.lines.map(&:chomp)
-    raise ParseError, "Roadmap must begin with #{HEADER}" unless lines.shift&.strip == HEADER
+    header = content.match(/\A\s*<!--\s*roadmap:v1(?:\s|-->).*?-->\s*/m)
+    raise ParseError, "Roadmap must begin with #{HEADER}" unless header
+
+    lines = content.delete_prefix(header[0]).gsub(/<!--.*?-->/m, "").lines.map(&:chomp)
 
     phases = []
     current_phase = nil
@@ -85,7 +87,7 @@ class RoadmapParser
 
   def markdown
     return @source.read if @source.respond_to?(:read)
-    return @source if @source.lstrip.start_with?(HEADER)
+    return @source if @source.lstrip.start_with?("<!-- roadmap:v1")
 
     if File.file?(@source)
       File.read(@source)

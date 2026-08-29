@@ -40,6 +40,26 @@ class RoadmapParserTest < ActiveSupport::TestCase
     assert_equal "Ship it", result.first[:items].first[:title]
   end
 
+  test "ignores multi-line HTML comments" do
+    roadmap = <<~MARKDOWN
+      <!-- roadmap:v1
+      Internal notes may span multiple lines.
+      -->
+
+      ## Phase: Now
+      Description: Keep going
+
+      <!-- This item is being tracked elsewhere.
+      Do not display this note. -->
+      ### Item: Ship it
+      Status: Planned
+    MARKDOWN
+
+    result = RoadmapParser.new(roadmap).parse
+
+    assert_equal "Ship it", result.first[:items].first[:title]
+  end
+
   test "fetches the canonical roadmap with short timeouts" do
     response = mock
     response.expects(:is_a?).with(Net::HTTPSuccess).returns(true)
@@ -96,7 +116,8 @@ class RoadmapParserTest < ActiveSupport::TestCase
 
     result = RoadmapParser.new.parse
 
-    assert_empty result
+    assert_equal "Short term", result.first[:title]
+    assert_equal "Reliability, performance, and technical debt", result.first[:items].first[:title]
   end
 
   test "rejects a roadmap without the version marker" do

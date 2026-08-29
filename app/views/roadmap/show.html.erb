@@ -19,7 +19,7 @@
         <div class="mt-6 space-y-3 text-sm">
           <% @status_counts.each do |status, count| %>
             <div class="flex items-center justify-between gap-3 text-gray-500">
-              <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full <%= status == "In progress" ? "bg-emerald-500" : status == "Exploring" ? "bg-amber-400" : "bg-gray-300" %>"></span><%= status %></span>
+              <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full <%= status == "In progress" ? "bg-green-600" : status == "Exploring" ? "bg-yellow-500" : "bg-gray-300" %>"></span><%= status %></span>
               <span class="font-mono text-xs text-gray-400"><%= count %></span>
             </div>
           <% end %>
@@ -52,7 +52,7 @@
                     <li class="py-5 first:pt-4 last:pb-0">
                       <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                         <h2 class="text-base font-medium text-gray-800"><%= item[:title] %></h2>
-                        <span class="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-gray-50 px-2.5 py-1 font-mono text-[11px] text-gray-500"><span class="h-1.5 w-1.5 rounded-full <%= item[:status] == "In progress" ? "bg-emerald-500" : item[:status] == "Exploring" ? "bg-amber-400" : "bg-gray-300" %>"></span><%= item[:status] %></span>
+                        <span class="inline-flex w-fit shrink-0 items-center gap-2 rounded-full bg-gray-50 px-2.5 py-1 font-mono text-[11px] text-gray-500"><span class="h-1.5 w-1.5 rounded-full <%= item[:status] == "In progress" ? "bg-green-600" : item[:status] == "Exploring" ? "bg-yellow-500" : "bg-gray-300" %>"></span><%= item[:status] %></span>
                       </div>
                       <% if item[:description].present? %>
                         <p class="mt-2 max-w-2xl text-sm leading-6 text-gray-500"><%= item[:description] %></p>
