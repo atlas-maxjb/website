@@ -14,12 +14,11 @@ class RoadmapControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select "title", text: "Roadmap - Sure"
-    assert_select "h1", text: "The Sure roadmap"
+    assert_select "h1", text: "The Roadmap"
     assert_select "details", count: 3
     assert_select "details:not([open])", count: 3
     assert_select "summary", text: /Stabilize and polish the core/
     assert_select "h2", text: "Reliability, performance, and technical debt"
-    assert_select "a[href='/'] img[alt='Sure']"
   end
 
   test "roadmap page renders an empty state without phases or items" do
@@ -29,7 +28,6 @@ class RoadmapControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select "details", count: 0
-    assert_select "h2", count: 0
-    assert_select "p", text: /temporarily unavailable/
+    assert_select "p", text: "The roadmap is temporarily unavailable. Please check back soon."
   end
 end

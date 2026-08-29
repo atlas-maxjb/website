@@ -3,10 +3,8 @@
     <div class="flex flex-row gap-3 mb-4 items-center w-fit mx-auto mb-4">
       <%= image_tag 'icon-maybe-color.svg', alt: "Sure Logo", class: "inline w-32" %>
     </div>
-    <h1 class="text-[4.5rem] text-gray-700 mx-auto leading-[calc(1em+4px)] tracking-[-0.04em] font-medium mb-4">Pay (us) nothing</h1>
-          <p class="text-xl font-normal leading-[1.4] text-gray-500 tracking-normal">Maybe^H^H^H^H^HSure, one day we'll get our act together and offer a hosted version, but for now pay these lovely folks that share revenue with us so we can keep this going.</p>
-          <br/>
-          <p class="text-xl font-normal leading-[1.4] text-gray-500 tracking-normal">"Linux<code style="font-family: monospace;">^H^H^H^H^H</code>Sure is free if your time has no value." -jwz?</p>
+    <h1 class="text-[4.5rem] text-gray-700 mx-auto leading-[calc(1em+4px)] tracking-[-0.04em] font-medium mb-4">Pay (us) nothing (almost!)</h1>    
+      <p class="text-xl font-normal leading-[1.4] text-gray-500 tracking-normal">"Linux<code style="font-family: monospace;">^H^H^H^H^H</code>Sure is free <br/>if your time has no value." -jwz?</p>
   </section>
   <section class="">
     <div class="container max-w-5xl mx-auto px-4">
@@ -25,21 +23,59 @@
             <span data-pricing-target="yearlyBillingBadge" class="text-xs text-gray-400 leading-5 font-mono font-medium bg-gray-200 px-[6px] py-[2px] rounded-full">17% OFF</span>
           </div>
         </div>
-        <div class="max-w-[28rem] mx-auto">
-          <%# Sure+ Plan %>
-          <div class="bg-white flex flex-col justify-between p-6 rounded-[1.5rem] min-h-[28rem] border border-gray-200 shadow-soft transition-all duration-300 bg-cover bg-top bg-no-repeat" style="background-image: url(<%= asset_path('maybe-plus-bg.svg') %>)">
+        <div class="flex flex-col lg:flex-row gap-6 max-w-6xl mx-auto items-stretch">
+          <%# Sure Free Plan %>
+          <div class="bg-white flex flex-col justify-between p-6 rounded-[1.5rem] min-h-[28rem] border border-gray-200 shadow-soft transition-all duration-300 flex-1">
             <div>
+              <h3 class="text-2xl font-semibold text-gray-800 mb-4">Good</h3>
+              <div>
+                <h4 class="text-[3.5rem] leading-[calc(4.5rem+4px)] tracking-[-0.04em] font-semibold text-gray-800">$0/month</h4>
+                <p class="text-gray-400 mb-6">Free forever</p>
+              </div>
+              <ul class="space-y-2 mb-8 text-gray-700 text-[1.125rem] leading-[1.4] text-[1rem]">
+                <li class="flex items-center gap-2">
+                  <%= image_tag "pricing-maybe-ai.svg", alt: "Sure Free", class: "w-6 h-6 text-amber-600" %>
+                  <span>No hosted/BYOBank Sync</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <%= image_tag "pricing-layers.svg", alt: "Sure Free", class: "w-6 h-6 text-amber-600" %>
+                  <span>90 day data retention</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <%= image_tag "pricing-institutions.svg", alt: "Sure Free", class: "w-6 h-6 text-amber-600" %>
+                  <span>$1/month keeps your data anytime you upgrade</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <%= image_tag "pricing-transactions.svg", alt: "Sure Free", class: "w-6 h-6 text-amber-600" %>
+                  <span>Community support via Discord</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <%= image_tag "pricing-global.svg", alt: "Sure Free", class: "w-6 h-6 text-amber-600" %>
+                  <span></span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <%= link_to "Get Started", "#",
+                  class: "group relative inline-flex h-11 w-full justify-center items-center rounded-lg border border-gray-300 bg-white px-6 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" %>
+            </div>
+          </div>
+
+          <%# Sure+ Plan %>
+          <div class="bg-white flex flex-col justify-between p-6 rounded-[1.5rem] min-h-[28rem] border border-gray-200 shadow-soft transition-all duration-300 bg-cover bg-top bg-no-repeat flex-1" style="background-image: url(<%= asset_path('maybe-plus-bg.svg') %>)">
+            <div>
+              <h3 class="text-2xl font-semibold mb-4 text-transparent bg-clip-text bg-no-repeat bg-cover" style="background-image: url(<%= asset_path('maybe-plus-text-bg.png') %>);">Better</h3>
               <%# Monthly Price %>
               <div data-pricing-target="monthlyPrice">
-                <h4 class="text-[3.5rem] leading-[calc(4.5rem+4px)] tracking-[-0.04em] font-semibold text-transparent bg-clip-text bg-no-repeat bg-cover" style="background-image: url(<%= asset_path('maybe-plus-text-bg.png') %>);">$9/month</h4>
+                <h4 class="text-[3.5rem] leading-[calc(4.5rem+4px)] tracking-[-0.04em] font-semibold text-transparent bg-clip-text bg-no-repeat bg-cover" style="background-image: url(<%= asset_path('maybe-plus-text-bg.png') %>);">$5/month</h4>
                 <p class="text-gray-400 mb-6">Billed monthly</p>
               </div>
               <%# Annual Price %>
               <div data-pricing-target="yearlyPrice" class="hidden">
-                <h3 class="text-[3.5rem] leading-[calc(4.5rem+4px)] tracking-[-0.04em] font-semibold text-transparent bg-clip-text bg-no-repeat bg-cover" style="background-image: url(<%= asset_path('maybe-plus-text-bg.png') %>);">$90/year<span class="text-xl font-medium tracking-[0] ml-[14px]" style="color: #7C5D3D"> or $0.25/day</span></h3>
+                <h3 class="text-[3.5rem] leading-[calc(4.5rem+4px)] tracking-[-0.04em] font-semibold text-transparent bg-clip-text bg-no-repeat bg-cover" style="background-image: url(<%= asset_path('maybe-plus-text-bg.png') %>);">$50/year</h3>
                 <p class="text-gray-400 mb-6">Billed annually, 2 months free</p>
               </div>
-              <ul class="space-y-2 mb-8 text-gray-700 text-[1.125rem] leading-[1.4 text-[1rem]">
+              <ul class="space-y-2 mb-8 text-gray-700 text-[1.125rem] leading-[1.4] text-[1rem]">
                 <li class="flex items-center gap-2">
                   <%= image_tag "pricing-maybe-ai.svg", alt: "Sure Plus", class: "w-6 h-6 text-amber-600" %>
                   <span>Unlimited access to Sure AI</span>
@@ -69,6 +105,53 @@
                 <%= lucide_icon "credit-card", class: "w-5 h-5 text-gray-400" %>
                 <p>No credit card required</p>
               </span>
+            </div>
+          </div>
+
+          <%# Sure++ Plan %>
+          <div class="bg-white flex flex-col justify-between p-6 rounded-[1.5rem] min-h-[28rem] border border-gray-200 shadow-soft transition-all duration-300 flex-1">
+            <div>
+              <h3 class="text-2xl font-semibold text-gray-800 mb-4">Best</h3>
+
+              <%# Monthly Price %>
+              <div data-pricing-target="monthlyPrice">
+                <h4 class="text-[3.5rem] leading-[calc(4.5rem+4px)] tracking-[-0.04em] font-semibold text-transparent bg-clip-text bg-no-repeat bg-cover" style="background-image: url(<%= asset_path('maybe-plus-text-bg.png') %>);">$9/month</h4>
+                <p class="text-gray-400 mb-6">Billed monthly</p>
+              </div>
+              <%# Annual Price %>
+              <div data-pricing-target="yearlyPrice" class="hidden">
+                <h3 class="text-[3.5rem] leading-[calc(4.5rem+4px)] tracking-[-0.04em] font-semibold text-transparent bg-clip-text bg-no-repeat bg-cover" style="background-image: url(<%= asset_path('maybe-plus-text-bg.png') %>);">$90/year</h3>
+                <p class="text-gray-400 mb-6">Billed annually, 2 months free</p>
+              </div>
+
+              <div>
+              </div>
+              <ul class="space-y-2 mb-8 text-gray-700 text-[1.125rem] leading-[1.4] text-[1rem]">
+                <li class="flex items-center gap-2">
+                  <%= image_tag "pricing-gem.svg", alt: "Sure Plus Plus", class: "w-6 h-6 text-amber-600" %>
+                  <span>Email support</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <%= image_tag "pricing-shapes.svg", alt: "Sure Plus Plus", class: "w-6 h-6 text-amber-600" %>
+                  <span>Do eiusmod tempor incididunt ut labore et dolore magna aliqua</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <%= image_tag "pricing-messages-square.svg", alt: "Sure Plus Plus", class: "w-6 h-6 text-amber-600" %>
+                  <span>Enim ad minim veniam, quis nostrud exercitation ullamco laboris</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <%= image_tag "pricing-label.svg", alt: "Sure Plus Plus", class: "w-6 h-6 text-amber-600" %>
+                  <span>Encrypted RPi boot image SD card shipped to your door on request (with your data!)</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <%= image_tag "pricing-global.svg", alt: "Sure Plus Plus", class: "w-6 h-6 text-amber-600" %>
+                  <span>Access to Sure Finances LLC bank transaction data</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <%= link_to "Contact Sales", "#",
+                  class: "group relative inline-flex h-11 w-full justify-center items-center rounded-lg border border-gray-300 bg-gray-800 px-6 py-2 font-medium text-white transition-colors hover:bg-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" %>
             </div>
           </div>
         </div>

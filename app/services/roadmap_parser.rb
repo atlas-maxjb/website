@@ -43,7 +43,10 @@ class RoadmapParser
       next if stripped.empty?
 
       if (match = stripped.match(PHASE_PATTERN))
-        phases << finish_phase(current_phase) if current_phase
+        if current_phase
+          current_phase[:items] << finish_item(current_item) if current_item
+          phases << finish_phase(current_phase)
+        end
         current_phase = { title: match[1], description: nil, items: [] }
         current_item = nil
       elsif (match = stripped.match(ITEM_PATTERN))
